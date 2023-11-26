@@ -335,6 +335,31 @@ button:hover {
   cursor: pointer;
 }
 
+@media screen and (orientation: landscape) {
+  body {
+    /* Adjustments for landscape orientation */
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .container {
+    max-width: 500px; /* Adjust the max-width for landscape */
+  }
+
+  .content-container {
+    margin-bottom: 50px; /* Adjust margin for landscape */
+  }
+
+  .cover {
+    top: 150px; /* Adjust top position for landscape */
+  }
+
+  /* Add more landscape-specific adjustments as needed */
+}
+
+
+
+
 @media screen and (max-width: 800px) {
   html,
   body {
@@ -352,11 +377,13 @@ button:hover {
 
   .container {
     max-width: 300px;
-    height: 85%;
+    height: 1%;
     margin-top:50px;
     margin: 10px auto;
     border-radius: 10px;
     font-family: "Mountains of Christmas";  
+    font-weight: 700;
+    
   }
 
   .cover{
@@ -499,20 +526,21 @@ button:hover {
   
   button {
       font-family: 'Inter', sans-serif;
-      background-color: #BDD59B;
+      background-color: #0F8A5F;
       color:#f0f4f7;
       border: 0;
       border-radius: 5px;
-      font-size: 12px;
+      font-size: 13px;
+      font-weight: 700;
      margin:10px 0px 10px 0px;
   }
-  .song-text{
-    color:#f0f4f7;
-  }
+  
+  
   
   button:hover {
       background-color: #FF9492;
       cursor: pointer;
+      color:#f0f4f7;
   }
   
   .songs {
