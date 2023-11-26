@@ -163,21 +163,22 @@ a {
 }
 
 .cover{
+  visibility: hidden;
   background-color: rgba(255,255,255,0.2);
   height: 350px;
   width: 350px;
   border-radius: 50%;
-  position: relative;
-  top:375px;
-  left:335px;
+  position: absolute;
+ bottom: 100px;
+  left:0px;
 }
 .bottom{
   background-color: #27c162;
   height:70px; 
   width: 260px;
-  position: relative;
+  position: relative; 
   border-radius: 10px;
-  left:380px;
+  left:50px;
 }
 
 .bt1,.bt2{
@@ -239,12 +240,14 @@ a {
   justify-content: center;
   position: relative;
   margin-top: 25px;
-  left:335px;
+  left:0px;
   height: 350px;
   width: 350px;
   animation:snowfall 5s linear forwards infinite; 
   -webkit-animation:snowfall 5s linear forwards infinite; 
 }
+
+
 
 
 .snow{
@@ -300,6 +303,8 @@ a {
   }
 }
 
+
+
 .animate__animated.animate__fadeOutRightBig {
   --animate-duration: 10s;
 }
@@ -307,6 +312,12 @@ a {
 .animate__animated.animate__wobble {
   --animate-duration: 2s;
 }
+.animate__animated.animate__flip {
+  --animate-duration: 2s;
+}
+
+
+
 
 button {
   font-family: 'Inter', sans-serif;
@@ -324,12 +335,7 @@ button {
   transition: all 0.4s ease 0s;
   
 }
-.animate__bounceIn:hover {
-text-shadow: 0px 0px 6px rgba(255, 255, 255, 1);
--webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
--moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-transition: all 0.4s ease 0s;
-}
+
 button:hover {
   background-color: #FF9492;
   cursor: pointer;
@@ -387,6 +393,7 @@ button:hover {
   }
 
   .cover{
+    visibility: visible;
     background-color: rgba(255,255,255,0.2);
     height: 240px;
     width: 240px;
@@ -407,6 +414,9 @@ button:hover {
   border-radius: 8px;
   }
 
+  /* Add styles for legs and feet */
+
+
   h1{
     position:relative;
     top: 300px;
@@ -416,11 +426,27 @@ button:hover {
     width: 100px;
     height: 100px;
     left:-10px;
+    cursor:pointer;
+    transform-origin: bottom center;
+    transform: translateY(0);
+    transition: transform 0.5s ease;
   }
+  .christmas-tree:hover {
+    transform: translateY(-40px);
+    transform: translateY(0px);
+    animation:flip;
+    animation-duration: 3s; /* don't forget to set a duration! */
+  }
+
+  .christmas-tree:not(:hover){
+    transform: translateY(0);
+  }
+
+
   .christmas-tree-container {
     margin: 10px 80px 0px 80px;
     top: 60px;
-    
+    cursor:pointer;
     display: flex;
     justify-content: center;
     position: relative;
@@ -435,8 +461,10 @@ button:hover {
     top:30px;
     left:68px;
     justify-content: center;
+    cursor:pointer;
 
   }
+  
 
   .bottom{
     background-color: #27c162;
