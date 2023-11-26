@@ -1,10 +1,8 @@
-'use client'
 
 
-import getContent from "/src/app/content.jsx";
+import getContent from "../src/content.jsx";
 import SantaReindeer from "./santa.jsx";
-import React, { useState, useRef, useEffect } from "react";
-
+import React, { useState } from "react";
 
 
 // Add a string to the input field
@@ -21,14 +19,36 @@ function YouTubeJukebox() {
     setVideoIds([...videoIds, id]);
   };
 
-  // Create refs for DOM elements
-  const inputFieldRef = useRef(null);
-  const autoAddRef = useRef(null);
-
-
   // Add a string to the input field
 
-  
+  const inputField = document.getElementById("video");
+  const autoAdd = document.getElementById("add-video");
+  const playNext = document.getElementById("play-next");
+
+  const whiteChristmas = () => {
+    inputField.value = "PoAjmmD89Vw";
+    return inputField.value;
+  };
+  const rockn = () => {
+    inputField.value = "1qYz7rfgLWE";
+    return inputField.value;
+  };
+
+  const jingleBellRock = () => {
+    inputField.value = "R_vmuL0gjU0";
+    return inputField.value;
+   
+  };
+
+  const lookAlotLike = () => {
+    inputField.value = "WaNwEkCeZrE";
+    return inputField.value;
+  };
+
+  const wonderfulTime = () => {
+    inputField.value = "AN_R4pR1hck";
+    return inputField.value;
+  };
 
   // Create a function to play the next video in the queue
   const playNextVideo = () => {
@@ -38,45 +58,11 @@ function YouTubeJukebox() {
       return;
     }
 
-   
     // Otherwise, set the current video to the next video in the queue and remove it from the list
     const nextVideo = videoIds[0];
     setCurrentVideo(nextVideo);
     setVideoIds(videoIds.slice(1));
   };
-
-  const addAndPlayVideo = (id) => {
-    addVideo(id);
-    playNextVideo();
-    
-  };
-
-
-  const whiteChristmas = () => {
-    inputFieldRef.current.value = "PoAjmmD89Vw";
-    addAndPlayVideo("PoAjmmD89Vw");
-  };
-  const rockn = () => {
-    inputFieldRef.current.value = "1qYz7rfgLWE";
-    addAndPlayVideo("1qYz7rfgLWE");
-  };
-
-  const jingleBellRock = () => {
-    inputFieldRef.current.value = "R_vmuL0gjU0";
-    addAndPlayVideo("R_vmuL0gjU0");
-   
-  };
-
-  const lookAlotLike = () => {
-    inputFieldRef.current.value = "WaNwEkCeZrE";
-    addAndPlayVideo("WaNwEkCeZrE");
-  };
-
-  const wonderfulTime = () => {
-    inputFieldRef.current.value = "AN_R4pR1hck";
-    addAndPlayVideo("AN_R4pR1hck");
-  };
-
 
   // Create an iframe element and set its src to the YouTube video URL
   const iframe = currentVideo && (
@@ -94,27 +80,26 @@ function YouTubeJukebox() {
         }}
       >
         <div className="button-container">
-          
-          <button onClick={whiteChristmas}><p className ="animate__bounceIn">White Christmas</p></button>
-          <button onClick={rockn}><p className ="animate__bounceIn">Rockin' Around The Christmas Tree</p></button>
-          <button onClick={jingleBellRock}><p className ="animate__bounceIn">Jingle Bell Rock</p></button>
-          <button onClick={lookAlotLike}><p className ="animate__bounceIn">
-            It's Beginning to Look a Lot Like Christmas</p>
+          <button onClick={whiteChristmas}>White Christmas</button>
+          <button onClick={rockn}>Rockin' Around The Christmas Tree</button>
+          <button onClick={jingleBellRock}>Jingle Bell Rock</button>
+          <button onClick={lookAlotLike}>
+            It's Beginning to Look a Lot Like Christmas
           </button>
-          <button onClick={wonderfulTime}><p className ="animate__bounceIn">
-            It's the Most Wonderful Time of the Year</p>
+          <button onClick={wonderfulTime}>
+            It's the Most Wonderful Time of the Year
           </button>
         </div>
         <label htmlFor="videoId">Enter a YouTube video ID:</label>
-        <input ref={inputFieldRef} id="video" type="text" name="videoId" />
-        <button ref={autoAddRef} id="add-video" type="submit"><p className ="animate__bounceIn">
+        <input id="video" type="text" name="videoId" />
+        <button id="add-video" type="submit">
           Add Video
-          </p></button>
+        </button>
       </form>
 
       {/* Render a button to play the next video in the queue */}
-      <button id="play-next" onClick={playNextVideo}><p className ="animate__bounceIn">
-        Play Next Video</p>
+      <button id="play-next" onClick={playNextVideo}>
+        Play Next Video
       </button>
       <div className="player-container">
         {/* Render the iframe element to display the currently playing video */}
@@ -125,8 +110,6 @@ function YouTubeJukebox() {
 }
 
 function App() {
-
-  useEffect(() => {
   const countdown = setInterval(function () {
     const christmas = 25;
  // get today's date (you only need the day)
@@ -157,7 +140,7 @@ function App() {
   
     const td = new Date("December 25," + year + " 00:01:00");
     const distance = td.getTime() - now.getTime();
-   
+    console.log("td", td)
 
     
 
@@ -192,7 +175,7 @@ function App() {
         
     }
   }, 1000)
-}, [/* dependencies, if any */]);
+
 
 
   return (
