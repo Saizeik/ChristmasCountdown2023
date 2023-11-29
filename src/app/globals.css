@@ -251,6 +251,18 @@ a {
 }
 
 
+.christmas-tree:hover {
+  transform: translateY(-40px);
+  transform: translateY(0px);
+  animation:flip;
+  animation-duration: 3s; /* don't forget to set a duration! */
+}
+
+.christmas-tree:not(:hover){
+  transform: translateY(0);
+}
+
+
 
 
 .snow{
@@ -415,6 +427,16 @@ button:hover {
   }
   .bt2{
     top:40px;
+  }
+  .christmas-tree:hover {
+    transform: translateY(-40px);
+    transform: translateY(0px);
+    animation:flip;
+    animation-duration: 3s; /* don't forget to set a duration! */
+  }
+
+  .christmas-tree:not(:hover){
+    transform: translateY(0);
   }
   
 }
