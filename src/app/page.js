@@ -205,7 +205,7 @@ function App() {
             <p id="santa"></p>
             <p id="christmasCountdown"></p>
             <p className="countdownText">'til Christmas!</p>
-            <YouTubeJukebox />
+            <YouTubeJukebox className = "jukebox" />
           </main>
         </div>
       </header>
