@@ -125,75 +125,64 @@ function YouTubeJukebox() {
 }
 
 function App() {
-
   useEffect(() => {
-  const countdown = setInterval(function () {
-    const christmas = 25;
- // get today's date (you only need the day)
+    const countdown = setInterval(function () {
+      // Get today's date
+      const now = new Date();
+      
+      // Get the current year
+      const year = now.getFullYear();
+      
+      // Get the current date
+      const currentDate = new Date();
+      
+      // Set the target date to December 25th of the current year
+      let targetDate = new Date(year, 11, 25, 0, 1, 0); // December 25th, 00:01:00
 
+      // Check if Christmas has already passed this year
+      if (now > targetDate) {
+        // If Christmas has passed, set the target date to December 25th of the next year
+        targetDate = new Date(year + 1, 11, 25, 0, 1, 0);
+      }
 
+      // Calculate the difference in milliseconds
+      const differenceInMilliseconds = targetDate - currentDate;
 
+      // Convert the difference to days
+      const differenceInDays = differenceInMilliseconds / 86400000;
 
-    const now = new Date();
-   
-   
-   const year = now.getFullYear();
-   function daysUntilChristmas() {
-    // Get the current date
-    const currentDate = new Date();
-  
-    // Set the target date to December 25th of the current year
-    const targetDate = new Date(currentDate.getFullYear(), 11, 25);
-  
-    // Calculate the difference in milliseconds
-    const differenceInMilliseconds = targetDate - currentDate;
-  
-    // Convert the difference to days
-    const differenceInDays = differenceInMilliseconds / 86400000;
-  
-    // Round the result down to the nearest whole number
-    return Math.floor(differenceInDays);
-  }
-  
-    const td = new Date("December 25," + year + " 00:01:00");
-    const distance = td.getTime() - now.getTime();
-   
+      // Round the result down to the nearest whole number
+      const days = Math.floor(differenceInDays);
+      
+      // Calculate hours, minutes, and seconds
+      let hours = Math.floor((differenceInMilliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      let minutes = Math.floor((differenceInMilliseconds % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((differenceInMilliseconds % (1000 * 60)) / 1000);
 
-    
+      // Normalize hours, minutes, and seconds
+      hours %= 24;
+      minutes %= 60;
+      seconds %= 60;
 
-    let hours = Math.floor(
-      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    let days = daysUntilChristmas();
-    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    hours %= 24; // % Modulus; hours = hours/24; returns the remainder after dividing the specific values. the remainder is the modulus
-    minutes %= 60;
-    seconds %= 60;
-    const countdownDisplay =
-    days +
-      " " +
-      "days" +
-      " " +
-      hours +
-      "h " +
-      minutes +
-      "m " +
-      seconds +
-      "s ";
-  
-   
-    document.getElementById("christmasCountdown").innerHTML = countdownDisplay;
-    if (distance < 0) {
+      // Display the countdown
+      const countdownDisplay = `${days} days ${hours}h ${minutes}m ${seconds}s`;
+      
+      // Update the countdown display
+      document.getElementById("christmasCountdown").innerHTML = countdownDisplay;
+
+      // Check if Christmas has passed
+      if (differenceInMilliseconds < 0) {
+        clearInterval(countdown);
+        document.getElementById("christmasCountdown").innerHTML = "Merry Christmas!";
+        document.querySelector(".countdownText").innerHTML = "";
+      }
+    }, 1000);
+
+    // Clear the interval when the component is unmounted
+    return () => {
       clearInterval(countdown);
-      document.getElementById("christmasCountdown").innerHTML =
-        "Merry Christmas!";
-       document.querySelector(".countdownText").innerHTML = "";
-        
-    }
-  }, 1000)
-}, [/* dependencies, if any */]);
-
+    };
+  }, []); // Empty dependency array means this effect runs once after the initial render
 
   return (
     <div className="App">
@@ -205,7 +194,7 @@ function App() {
             <p id="santa"></p>
             <p id="christmasCountdown"></p>
             <p className="countdownText">'til Christmas!</p>
-            <YouTubeJukebox className = "jukebox" />
+            <YouTubeJukebox className="jukebox" />
           </main>
         </div>
       </header>
